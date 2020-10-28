@@ -5,7 +5,6 @@ plugins {
 }
 
 group = 'com.animalshop'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
@@ -22,6 +21,10 @@ sourceSets {
     main {
         java.srcDirs += 'build/generated/sources/annotationProcessor/java/main'
     }
+}
+
+bootJar {
+      archiveBaseName = "app"
 }
 
 dependencies {
