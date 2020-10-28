@@ -6,4 +6,9 @@ Backend service for eshop selling animal products.
 
 ## Building
 Run `./gradlew clean build`
-  - in `build/libs` subfolder runnable and deployable fat jar `app.jar` will be created, which can be run by `java -jar app.jar`
+  - in `build/libs` subfolder runnable and deployable fat jar `app.jar` will be created
+
+## Running
+For local run, use `java -jar -Dspring.profiles.active=local app.jar`
+  - mongodb service needs to be running on default port `27017`
+  - need to specify `jwt.secret` property or declare env variable `JWT_SECRET`
