@@ -12,6 +12,9 @@ spring:
     mongodb:
       uri: mongodb://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_DB}?authSource=admin&replicaSet=replset&ssl=true
 
+jwt:
+  secret: ${JWT_SECRET}
+
 ---
 
 spring:

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.animalshop.model.Order;
@@ -18,10 +19,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getOrders() {
-        // TODO: get actual user
-        String userEmail = "Miroslav.Lehotsky@gmail.com";
-
-        Query query = new Query(Criteria.where("user").is(userEmail));
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Query query = new Query(Criteria.where("user").is(username));
         query.fields().exclude("user");
 
         return mongoOperations.find(query, Order.class);
@@ -29,6 +28,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String saveOrder(Order order) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        order.setUser(username);
         mongoOperations.insert(order);
         return order.getId();
     }
