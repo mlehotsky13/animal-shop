@@ -12,3 +12,6 @@ Run `./gradlew clean build`
 For local run, use `java -jar -Dspring.profiles.active=local app.jar`
   - mongodb service needs to be running on default port `27017`
   - need to specify `jwt.secret` property or declare env variable `JWT_SECRET`
+
+## API documentation
+To see API documentation, visit: `/swagger-ui.html` endpoint.
