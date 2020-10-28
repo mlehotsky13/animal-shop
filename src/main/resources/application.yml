@@ -23,3 +23,6 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/animal-shop?readPreference=primary&ssl=false
+
+jwt:
+  secret: 'changeit'
