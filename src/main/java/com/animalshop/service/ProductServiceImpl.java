@@ -34,9 +34,9 @@ public class ProductServiceImpl implements ProductService {
         if (name != null)
             criteria.and("name").regex("^" + name);
 
-        long productsCount = mongoOperations.count(new Query(), Product.class);
+        long productsCount = mongoOperations.count(new Query(criteria), Product.class);
 
-        Query query = new Query().with(PageRequest.of(pageNumber, pageSize));
+        Query query = new Query(criteria).with(PageRequest.of(pageNumber, pageSize));
         query.fields().exclude("description").exclude("gallery");
         List<Product> products = mongoOperations.find(query, Product.class);
 
