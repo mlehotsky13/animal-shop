@@ -2,7 +2,7 @@ package com.animalshop.model.dto;
 
 import java.net.URL;
 import java.util.List;
-
+import org.springframework.hateoas.RepresentationModel;
 import com.animalshop.cst.AnimalCategory;
 
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductDto {
+public class ProductDto extends RepresentationModel<ProductDto> {
     protected String id;
 
     @NotNull
