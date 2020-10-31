@@ -26,26 +26,26 @@ import jakarta.validation.Valid;
 @RequestMapping("/orders")
 public class OrderController {
 
-    @Autowired
-    private OrderService orderService;
+	@Autowired
+	private OrderService orderService;
 
-    @Autowired
-    private OrderMapper orderMapper;
+	@Autowired
+	private OrderMapper orderMapper;
 
-    @ApiOperation("Get all orders of authenticated user")
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public List<OrderDto> getOrders() {
-        return orderService.getOrders().stream().map(orderMapper::orderToOrderDto).collect(Collectors.toList());
-    }
+	@ApiOperation("Get all orders of authenticated user")
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public List<OrderDto> getOrders() {
+		return orderService.getOrders().stream().map(orderMapper::orderToOrderDto).collect(Collectors.toList());
+	}
 
-    @ApiOperation("Save new order for authenticated user")
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<OrderDto> saveProduct(@Valid @RequestBody OrderDto orderDto) {
-        Order order = orderMapper.orderDtoToOrder(orderDto);
-        String id = orderService.saveOrder(order);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
+	@ApiOperation("Save new order for authenticated user")
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public HttpEntity<OrderDto> saveProduct(@Valid @RequestBody OrderDto orderDto) {
+		Order order = orderMapper.orderDtoToOrder(orderDto);
+		String id = orderService.saveOrder(order);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
 
-        return ResponseEntity.created(location).build();
-    }
+		return ResponseEntity.created(location).build();
+	}
 }

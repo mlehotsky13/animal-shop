@@ -2,12 +2,10 @@ package com.animalshop.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,17 +14,17 @@ import lombok.Setter;
 @Setter
 public class Order {
 
-    @Id
-    private String id;
-    private double totalPrice;
-    private List<OrderItem> items;
-    private LocalDateTime time;
+	@Id
+	private String id;
+	private double totalPrice;
+	private List<OrderItem> items;
+	private LocalDateTime time;
 
-    private String user;
+	private String user;
 
-    @CreatedDate
-    private LocalDateTime created;
+	@CreatedDate
+	private LocalDateTime created;
 
-    @LastModifiedDate
-    private LocalDateTime modified;
+	@LastModifiedDate
+	private LocalDateTime modified;
 }

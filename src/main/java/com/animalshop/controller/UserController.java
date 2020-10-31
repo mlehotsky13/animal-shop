@@ -20,17 +20,17 @@ import jakarta.validation.Valid;
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @Autowired
-    private UserMapper userMapper;
+	@Autowired
+	private UserMapper userMapper;
 
-    @ApiOperation("Save new user")
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void saveUser(@Valid @RequestBody UserDto userDto) throws UserAlreadyExistsException {
-        User user = userMapper.userDtoToUser(userDto);
-        userService.saveUser(user);
-    }
+	@ApiOperation("Save new user")
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void saveUser(@Valid @RequestBody UserDto userDto) throws UserAlreadyExistsException {
+		User user = userMapper.userDtoToUser(userDto);
+		userService.saveUser(user);
+	}
 }

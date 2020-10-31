@@ -5,7 +5,7 @@ import com.animalshop.model.User;
 
 public interface UserService {
 
-    void saveUser(User user) throws UserAlreadyExistsException;
+	void saveUser(User user) throws UserAlreadyExistsException;
 
-    User getUser(String username);
+	User getUser(String username);
 }

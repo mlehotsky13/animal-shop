@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderItem {
-    private String productId;
-    private double productPrice;
-    private int productCount;
+	private String productId;
+	private double productPrice;
+	private int productCount;
 }

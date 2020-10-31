@@ -22,22 +22,22 @@ import jakarta.validation.Valid;
 @RequestMapping("/auth")
 public class AuthenticationController {
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+	@Autowired
+	private UserDetailsService userDetailsService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
-    @ApiOperation("Authenticate with user credentials and get authentication JWT(JSON Web Token)")
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity<JwtResponse> authenticate(@Valid @RequestBody JwtRequest jwtRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
-        UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
-        String token = jwtTokenUtil.generateToken(userDetails);
+	@ApiOperation("Authenticate with user credentials and get authentication JWT(JSON Web Token)")
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public HttpEntity<JwtResponse> authenticate(@Valid @RequestBody JwtRequest jwtRequest) {
+		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
+		UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUsername());
+		String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
-    }
+		return ResponseEntity.ok(new JwtResponse(token));
+	}
 }

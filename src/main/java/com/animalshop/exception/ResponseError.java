@@ -9,5 +9,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ResponseError {
 
-    private String msg;
+	private String msg;
 }
