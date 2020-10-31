@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.animalshop.config.JwtTokenUtil;
 import com.animalshop.model.dto.JwtRequest;
 import com.animalshop.model.dto.JwtResponse;
-
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -32,6 +31,7 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @ApiOperation("Authenticate with user credentials and get authentication JWT(JSON Web Token)")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<JwtResponse> authenticate(@Valid @RequestBody JwtRequest jwtRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));

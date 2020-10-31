@@ -24,6 +24,7 @@ import com.animalshop.model.Product;
 import com.animalshop.model.assembler.ProductModelAssembler;
 import com.animalshop.model.dto.ProductDto;
 import com.animalshop.service.ProductService;
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -42,6 +43,7 @@ public class ProductController {
 	@Autowired
 	private PagedResourcesAssembler<Product> pagedResourcesAssembler;
 
+	@ApiOperation("Get paged products satisfying provided filter parameters")
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public HttpEntity<PagedModel<ProductDto>> getProducts(//
 			@RequestParam(required = false) Double minPrice, //
@@ -56,6 +58,7 @@ public class ProductController {
 		return ResponseEntity.ok(collModel);
 	}
 
+	@ApiOperation("Save new product")
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public HttpEntity<Product> saveProduct(@Valid @RequestBody ProductDto productDto) {
 		Product product = productMapper.productDtoToProduct(productDto);
@@ -65,6 +68,7 @@ public class ProductController {
 		return ResponseEntity.created(location).build();
 	}
 
+	@ApiOperation("Get concrete product by its id")
 	@GetMapping(value = "/{productId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ProductDto getProduct(@PathVariable String productId) throws ProductNotFoundException {

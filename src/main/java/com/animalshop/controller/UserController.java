@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.animalshop.exception.UserAlreadyExistsException;
 import com.animalshop.mapper.UserMapper;
 import com.animalshop.model.User;
 import com.animalshop.model.dto.UserDto;
 import com.animalshop.service.UserService;
-
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -27,6 +26,7 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
+    @ApiOperation("Save new user")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void saveUser(@Valid @RequestBody UserDto userDto) throws UserAlreadyExistsException {
